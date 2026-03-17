@@ -1,0 +1,190 @@
+.rcard {
+  background: var(--cinema-surface);
+  border: 1px solid var(--cinema-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s;
+}
+.rcard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--cinema-border2);
+}
+
+/* Poster */
+.rcard__poster {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--cinema-mid);
+}
+.rcard__poster-skel { position: absolute; inset: 0; border-radius: 0; }
+.rcard__poster img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s var(--ease), opacity 0.3s;
+}
+.rcard:hover .rcard__poster img { transform: scale(1.05); }
+.rcard__poster-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 50%, rgba(5,13,18,0.6) 100%);
+}
+
+/* Score badge on image */
+.rcard__score-badge {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(5,13,18,0.85);
+  border: 1px solid rgba(245,197,24,0.5);
+  border-radius: var(--r-md);
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+.rcard__score-num {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+.rcard__score-lbl {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Body */
+.rcard__body {
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.rcard__author {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal);
+}
+.rcard__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.rcard__why {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-style: italic;
+  display: flex;
+  gap: 6px;
+}
+.rcard__why-icon { flex-shrink: 0; font-style: normal; }
+
+/* Match bar */
+.rcard__bar-wrap {
+  padding: 12px;
+  background: var(--cinema-mid);
+  border-radius: var(--r-md);
+  border: 1px solid var(--cinema-border);
+}
+.rcard__bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+.rcard__bar-labels span { color: var(--text-muted); }
+.rcard__bar-labels strong { color: var(--gold); font-size: 14px; }
+.rcard__bar {
+  height: 5px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.rcard__bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  transition: width 1.2s var(--ease);
+}
+.rcard__bar-breakdown {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Action buttons */
+.rcard__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 4px;
+}
+.rcard__btn {
+  padding: 8px 18px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--cinema-border2);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  flex: 1;
+  text-align: center;
+}
+.rcard__btn:disabled { opacity: 0.4; cursor: default; }
+
+.rcard__btn--like:hover:not(:disabled) {
+  background: rgba(45,212,191,0.12);
+  color: var(--teal);
+  border-color: var(--teal);
+  transform: scale(1.03);
+}
+.rcard__btn--like.rcard__btn--active {
+  background: rgba(45,212,191,0.15);
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.rcard__btn--dislike:hover:not(:disabled) {
+  background: rgba(255,100,80,0.1);
+  color: #ff6450;
+  border-color: #ff6450;
+  transform: scale(1.03);
+}
+.rcard__btn--dislike.rcard__btn--active {
+  background: rgba(255,100,80,0.12);
+  color: #ff6450;
+  border-color: #ff6450;
+}
+
+.rcard__feedback-msg {
+  font-size: 12px;
+  color: var(--teal);
+  font-style: italic;
+  padding: 6px 0;
+}
